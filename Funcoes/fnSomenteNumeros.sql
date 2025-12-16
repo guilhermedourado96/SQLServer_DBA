@@ -1,3 +1,13 @@
+/************************************************************************************************************************
+• Autor............:	Guilherme Dourado
+• Contatos.........:	https://www.linkedin.com/in/analistaguilhermedourado / guilhermedourado96@gmail.com
+• Script...........:	spVolumetriaTabelas
+• Data criacao.....:	16/12/2025	
+• Ultima alteração.:	--/--/----
+• Desrição script..:	Recebe uma string de 100 caracteres, deleta quaisquer caracteres diferentes de numeros e retorna
+                        o resultado.
+*************************************************************************************************************************/
+
 CREATE FUNCTION [DBO].[fnSomenteNumeros] (@PALAVRA VARCHAR (100)) RETURNS VARCHAR (100) AS
 BEGIN
 DECLARE
