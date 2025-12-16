@@ -7,7 +7,6 @@
 • Desrição script..:	Este script retorna a volumetria e espaço alocado por cada tabela do nome do banco de dados 
 						repassado como parâmetro ou do banco de dados da sessão atual(caso o banco não seja informado)
 						em formato tabular.
-
 *************************************************************************************************************************/
 CREATE PROC spVolumetriaTabelas @NOME_BANCO VARCHAR(128) = NULL AS
 BEGIN 
@@ -17,7 +16,7 @@ BEGIN
 				@ID_BD				INT
 
 		IF @NOME_BANCO IS NOT NULL
-			SELECT @ID_BD = DATABASE_ID FROM SYS.DATABASES (NOLOCK) WHERE NAME = @NOME_BANCO
+			SELECT @ID_BD = DATABASE_ID FROM SYS.DATABASES WHERE NAME = @NOME_BANCO
 		ELSE
 			SELECT @ID_BD = DB_ID();
 
@@ -34,10 +33,10 @@ BEGIN
 		
 		DECLARE CRCURSOR CURSOR FOR
 			SELECT	OBJ.NAME AS TABELA
-			FROM SYS.SYSOBJECTS AS OBJ (NOLOCK)
-			INNER JOIN SYS.SYSINDEXES AS IDX (NOLOCK)
+			FROM SYS.SYSOBJECTS AS OBJ 
+			INNER JOIN SYS.SYSINDEXES AS IDX
 				ON OBJ.ID = IDX.ID
-			INNER JOIN SYS.TABLES T (NOLOCK)
+			INNER JOIN SYS.TABLES T
 				ON OBJ.ID = T.OBJECT_ID
 			WHERE  OBJ.TYPE = 'U'
 			AND IDX.INDID < 2
